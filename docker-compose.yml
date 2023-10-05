@@ -1,0 +1,21 @@
+version: '3'
+
+services: 
+  urlshortner:
+    build: .
+    volumes:
+      - .:/urlshortner
+    ports:
+      - "8000:8000"
+    container_name: url_shortner
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    networks:
+      - app-network
+    stdin_open: true
+    tty: true
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
